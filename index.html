@@ -72,7 +72,6 @@
       font-size: 96px;
       color: white;
       -webkit-background-clip: text;
-      background-image: linear-gradient(to left, #ff4f81, #ff4f81);
       -webkit-text-stroke: 2px black;
       font-weight: bold;
       opacity: 0;
@@ -128,7 +127,7 @@
       position: absolute;
       font-size: 100px;
       opacity: 0;
-      animation: finalEmoji 1s 14s forwards;
+      animation: finalEmoji 1s 12s forwards;
       z-index: 10;
       top: 50%;
       left: 50%;
@@ -156,53 +155,25 @@
   <div class="sound-icon sound-on" onclick="toggleSound()">🔊</div>
 
   <script>
-    let isPlaying = true;
+    let isPlaying = false;
     const soundIcon = document.querySelector('.sound-icon');
     const audio = new Audio('geylani.mp3');
     audio.loop = true;
 
-    window.onload = () => {
-      audio.play();
-    };
-
     function toggleSound() {
       if (isPlaying) {
         audio.pause();
+        soundIcon.textContent = "🔇";
         soundIcon.classList.remove('sound-on');
         soundIcon.classList.add('sound-off');
       } else {
         audio.play();
+        soundIcon.textContent = "🔊";
         soundIcon.classList.remove('sound-off');
         soundIcon.classList.add('sound-on');
       }
       isPlaying = !isPlaying;
     }
-
-    const emojiCount = 200;
-    const container = document.body;
-
-    for (let i = 0; i < emojiCount; i++) {
-      const emoji = document.createElement('div');
-      emoji.classList.add('emoji');
-      emoji.textContent = '🌹';
-
-      emoji.style.top = Math.random() * 100 + '%';
-      emoji.style.left = Math.random() * 100 + '%';
-      emoji.style.fontSize = (Math.random() * 20 + 10) + 'px';
-      emoji.style.animationDuration = Math.random() * 4 + 3 + 's';
-      emoji.style.animationDelay = Math.random() * 5 + 's';
-
-      container.appendChild(emoji);
-    }
-
-    setInterval(() => {
-      const emojis = document.querySelectorAll('.emoji');
-      emojis.forEach(emoji => {
-        emoji.style.animation = 'none';
-        emoji.offsetHeight;
-        emoji.style.animation = `fadeMoveUp ${Math.random() * 4 + 3}s infinite`;
-      });
-    }, 5000);
   </script>
 
 </body>
